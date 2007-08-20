@@ -1,6 +1,6 @@
 %define name pdq
 %define version 2.2.1
-%define release 12mdk
+%define release %mkrel 12
 
 Summary:   Print, don't Queue! - Daemonless printing system
 Name:      %{name}
