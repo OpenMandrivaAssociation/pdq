@@ -17,7 +17,6 @@ Source:    %{name}-%{version}.tar.bz2
 Requires:  file
 BuildRequires:	gtk+-devel
 #Provides:  lpddaemon
-BuildRoot: %{_tmppath}/%{name}-buildroot
 
 %description 
 
