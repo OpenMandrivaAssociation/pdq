@@ -20,7 +20,6 @@ BuildRequires:	gtk+-devel
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
 %description 
-
 A complete replacement for classical printing systems (spoolers). PDQ
 does not need a daemon and so there are no problems with crashed
 daemons, blocked ports, attacks of open ports, but PDQ cannot receive
