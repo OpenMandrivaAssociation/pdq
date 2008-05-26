@@ -1,6 +1,6 @@
 %define name pdq
 %define version 2.2.1
-%define release %mkrel 13
+%define release %mkrel 14
 
 Summary:   Print, don't Queue! - Daemonless printing system
 Name:      %{name}
@@ -10,6 +10,7 @@ Group:     System/Servers
 URL:       http://pdq.sourceforge.net/
 Patch0:    %{name}-%{version}-Makefile.in-0.patch.bz2
 Patch1:    %{name}-%{version}-Makefile.in-1.patch.bz2
+Patch2:	   %{name}-%{version}-open-with-default-open-umask.patch
 Source1:   pdqpanicbutton.bz2
 Source2:   killpdq.bz2
 License:   GPL
@@ -40,10 +41,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %patch0
 %patch1
+%patch2 -p1
 
 %build
 
-%configure --enable-pdqlibdir=%{_libdir}/pdq --enable-printrc=%{_sysconfdir}/pdq/printrc --prefix=%{_prefix}
+%configure --enable-pdqlibdir=%{_libdir}/pdq --enable-printrc=%{_sysconfdir}/pdq/printrc --prefix=%{_prefix} --disable-gtktest
 
 %make
 
@@ -51,14 +53,14 @@ rm -rf $RPM_BUILD_ROOT
 #mkdir -p ${RPM_BUILD_ROOT}/etc/pdq/drivers/{generic,ghostscript,misc,postscript}
 #mkdir -p ${RPM_BUILD_ROOT}/etc/pdq/interfaces
 mkdir -p ${RPM_BUILD_ROOT}/etc/pdq
-mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/{bin,X11R6/bin}
+mkdir -p ${RPM_BUILD_ROOT}%{_bindir}
 mkdir -p ${RPM_BUILD_ROOT}%{_mandir}/{man1,man5}
 
 make install prefix=${RPM_BUILD_ROOT}%{_prefix} \
-	bindir=${RPM_BUILD_ROOT}%{_prefix}/bin \
-	xpdqbindir=${RPM_BUILD_ROOT}%{_prefix}/X11R6/bin \
+	bindir=${RPM_BUILD_ROOT}%{_bindir} \
+	xpdqbindir=${RPM_BUILD_ROOT}%{_bindir} \
 	libdir=${RPM_BUILD_ROOT}%{_libdir} \
-	infodir=${RPM_BUILD_ROOT}%{_prefix}/info \
+	infodir=${RPM_BUILD_ROOT}%{_infodir} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	pdqlibdir=${RPM_BUILD_ROOT}%{_libdir}/pdq \
 	printrc_file=${RPM_BUILD_ROOT}%{_sysconfdir}/pdq/printrc
@@ -112,12 +114,12 @@ fi
 %{_libdir}/pdq/drivers
 %{_libdir}/pdq/interfaces
   
-%attr(4755,root,root) %{_prefix}/bin/lpd_*
-%attr(755,root,root) %{_prefix}/bin/pdq
-%attr(755,root,root) %{_prefix}/X11R6/bin/xpdq
-%{_prefix}/bin/lpr-pdq
-%attr(755,root,root) %{_prefix}/bin/killpdq
-%attr(755,root,root) %{_prefix}/sbin/pdqpanicbutton
+%attr(4755,root,root) %{_bindir}/lpd_*
+%attr(755,root,root) %{_bindir}/pdq
+%attr(755,root,root) %{_bindir}/xpdq
+%{_bindir}/lpr-pdq
+%attr(755,root,root) %{_bindir}/killpdq
+%attr(755,root,root) %{_sbindir}/pdqpanicbutton
 
 %{_mandir}/man1/lpd_*
 %{_mandir}/man1/lpr-pdq*
