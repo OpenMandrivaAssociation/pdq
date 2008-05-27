@@ -45,7 +45,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %build
 
-%configure --enable-pdqlibdir=%{_libdir}/pdq --enable-printrc=%{_sysconfdir}/pdq/printrc --prefix=%{_prefix} --disable-gtktest
+%configure --enable-pdqlibdir=%{_libdir}/pdq --enable-printrc=%{_sysconfdir}/pdq/printrc --prefix=%{_prefix}
 
 %make
 
