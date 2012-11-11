@@ -1,0 +1,12 @@
+diff -p -up pdq-2.2.1/src/xpdq_job.c.orig pdq-2.2.1/src/xpdq_job.c
+--- pdq-2.2.1/src/xpdq_job.c.orig	2008-05-26 17:50:58.000000000 -0300
++++ pdq-2.2.1/src/xpdq_job.c	2008-05-26 17:51:04.000000000 -0300
+@@ -133,7 +133,7 @@ void xpdq_cancel_print_job (void) {
+ 	       return;
+ 	    }
+ 	    sprintf (job_log_file, "%s.log", job->job_base);
+-	    fd = open (job_log_file, O_CREAT | O_APPEND | O_WRONLY);
++	    fd = open (job_log_file, O_CREAT | O_APPEND | O_WRONLY, 0666);
+ 	    free (job_log_file);
+ 	    if (fd == -1) {
+ 	       fprintf  (stderr, "Error opening job log file: "
