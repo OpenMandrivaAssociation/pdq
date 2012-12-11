@@ -1,11 +1,7 @@
-%define name pdq
-%define version 2.2.1
-%define release %mkrel 16
-
 Summary:   Print, don't Queue! - Daemonless printing system
-Name:      %{name}
-Version:   %{version}
-Release:   %{release}
+Name:      pdq
+Version:   2.2.1
+Release:   17
 Group:     System/Servers
 URL:       http://pdq.sourceforge.net/
 Patch0:    %{name}-%{version}-Makefile.in-0.patch.bz2
@@ -17,8 +13,7 @@ License:   GPL
 Source:    %{name}-%{version}.tar.bz2
 Requires:  file
 BuildRequires:	gtk+-devel
-#Provides:  lpddaemon
-BuildRoot: %{_tmppath}/%{name}-buildroot
+
 
 %description 
 A complete replacement for classical printing systems (spoolers). PDQ
@@ -35,8 +30,6 @@ internet) machines, because it does not contain all the network stuff
 of other spoolers which causes difficulties for users without network.
 
 %prep
-rm -rf $RPM_BUILD_ROOT
-
 %setup
 
 %patch0
@@ -44,7 +37,6 @@ rm -rf $RPM_BUILD_ROOT
 %patch2 -p1
 
 %build
-
 %configure --enable-pdqlibdir=%{_libdir}/pdq --enable-printrc=%{_sysconfdir}/pdq/printrc --prefix=%{_prefix}
 
 %make
@@ -86,16 +78,11 @@ chmod a+rx ${RPM_BUILD_ROOT}%{_bindir}/killpdq
   ln -s pdq.1 lpr-pdq.1
 )
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %post
-
 # Set up update-alternatives entry
 %{_sbindir}/update-alternatives --install %{_bindir}/lpr lpr %{_bindir}/lpr-pdq 6 --slave %{_mandir}/man1/lpr.1.bz2 lpr.1.bz2 %{_mandir}/man1/lpr-pdq.1.bz2
 
 %preun
-
 if [ "$1" = 0 ]; then
   # Remove update-alternatives entry
   %{_sbindir}/update-alternatives --remove lpr /usr/bin/lpr-pdq
@@ -121,7 +108,6 @@ fi
 %attr(755,root,root) %{_bindir}/killpdq
 %attr(755,root,root) %{_sbindir}/pdqpanicbutton
 
-%{_mandir}/man1/lpd_*
-%{_mandir}/man1/lpr-pdq*
-%{_mandir}/man1/*pdq*
+%{_mandir}/man1/*.1*
 %{_mandir}/man5/printrc.5*
+

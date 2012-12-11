@@ -1,4 +1,6 @@
 sources:
-  "killpdq.bz2:"	2ff14a732d07149973ecb631764e472d81281f66
-  "pdq-2.2.1.tar.bz2:"	5a889848350d070905625e77a018510ef665ebc2
-  "pdqpanicbutton.bz2:"	929526dc67f89195fab63de792978edb21c3a358
+  "killpdq.bz2": 2ff14a732d07149973ecb631764e472d81281f66
+  "pdq-2.2.1-Makefile.in-0.patch.bz2": 2d77c884a14ba6b009ad3a60f50c3736c47fafd8
+  "pdq-2.2.1-Makefile.in-1.patch.bz2": d9e5c2207b48eac32b8d8614009d8817326c0a43
+  "pdq-2.2.1.tar.bz2": 5a889848350d070905625e77a018510ef665ebc2
+  "pdqpanicbutton.bz2": 929526dc67f89195fab63de792978edb21c3a358
