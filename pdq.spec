@@ -1,7 +1,7 @@
 Summary:   Print, don't Queue! - Daemonless printing system
 Name:      pdq
 Version:   2.2.1
-Release:   17
+Release:   18
 Group:     System/Servers
 URL:       http://pdq.sourceforge.net/
 Patch0:    %{name}-%{version}-Makefile.in-0.patch.bz2
