@@ -3,7 +3,7 @@ Name:      pdq
 Version:   2.2.1
 Release:   18
 Group:     System/Servers
-URL:       http://pdq.sourceforge.net/
+URL:       https://pdq.sourceforge.net/
 Patch0:    %{name}-%{version}-Makefile.in-0.patch.bz2
 Patch1:    %{name}-%{version}-Makefile.in-1.patch.bz2
 Patch2:	   %{name}-%{version}-open-with-default-open-umask.patch
